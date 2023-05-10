@@ -19,6 +19,3 @@ const submissionSchema = new mongoose.Schema(
 )
 
 module.exports = mongoose.model("submission", submissionSchema)
-
-
-

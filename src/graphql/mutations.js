@@ -1,9 +1,14 @@
 const { GraphQLString, GraphQLNonNull, GraphQLList } = require('graphql')
-const { QuestionInputType, AnswerInput } = require('./types')
-const { User, Quiz, Question, Submission } = require("../models")
-const { createJWT } = require("../util/auth")
+const { QuestionInputType, AnswerInputType } = require('./types')
+const { User, Quiz, Question, Submission } = require('../models')
 
-// Register a user
+
+
+// Register a User
+
+/* 
+* Register a user
+*/
 const register = {
     type: GraphQLString,
     args: {
@@ -12,11 +17,11 @@ const register = {
         password: { type: GraphQLString }
     },
     async resolve(parent, args) {
-        //check if a user with passed email exists
+        // Check if a user with passed email exists
         const checkUser = await User.findOne({ email: args.email })
 
         if (checkUser) {
-            throw new Error('User with this email address already exists!')
+            throw new Error("User with this email address already exists")
         }
 
         const newUser = new User({
@@ -32,7 +37,6 @@ const register = {
     }
 }
 
-// login 
 const login = {
     type: GraphQLString,
     args: {
@@ -42,8 +46,8 @@ const login = {
     async resolve(parent, args) {
         const user = await User.findOne({ email: args.email })
 
-        if (!user || user.password != args.password) {
-            throw new Error("Password incorrect or user with that email does not exist")
+        if (!user || user.password !== args.password) {
+            throw new Error("Password incorrect or user with this email does not exist")
         }
 
         const token = createJWT(user)
@@ -51,7 +55,6 @@ const login = {
     }
 }
 
-// quiz mutation 
 const createQuiz = {
     type: GraphQLString,
     args: {
@@ -84,6 +87,7 @@ const createQuiz = {
             }
         }
 
+        
         const quiz = new Quiz({
             title: args.title,
             description: args.description,
@@ -107,7 +111,6 @@ const createQuiz = {
     }
 }
 
-//submitting a quiz
 const submitQuiz = {
     type: GraphQLString,
     args: {
@@ -147,3 +150,5 @@ module.exports = {
     createQuiz,
     submitQuiz
 }
+
+

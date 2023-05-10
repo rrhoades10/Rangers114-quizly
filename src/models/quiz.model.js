@@ -5,21 +5,20 @@ const quizSchema = new mongoose.Schema(
         slug: {
             type: String,
             unique: true,
-            required: true
+            required: true,
         },
         title: {
             type: String,
-            required: true
+            required: true,
         },
         description: {
             type: String,
-            required: true
+            required: true,
         },
         userId: {
             type: String,
             required: true
         },
-
     },
     { timestamps: true }
 )
