@@ -1,14 +1,13 @@
-//Import models from to interat with DB
+//import models so we can interact with the DB
 const { User, Question, Quiz, Submission } = require('../models')
 
-// Import built in GraphQL Data types
-const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLInt, GraphQLFloat, GraphQLList, GraphQLInputObjectType } = require("graphql")
+//Import the builtin graphql data types
+const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLInt, GraphQLFloat, GraphQLList, GraphQLInputObjectType } = require('graphql')
 
-// UserType
 
 const UserType = new GraphQLObjectType({
     name: 'User',
-    description: "User Type",
+    description: 'User type',
     fields: () => ({
         id: { type: GraphQLID },
         username: { type: GraphQLString },
@@ -28,10 +27,11 @@ const UserType = new GraphQLObjectType({
     })
 })
 
-// QuestionType
+
+
 const QuestionType = new GraphQLObjectType({
     name: 'Question',
-    description: 'Question Type',
+    description: 'Question type',
     fields: () => ({
         id: { type: GraphQLID },
         quizId: { type: GraphQLString },
@@ -41,28 +41,27 @@ const QuestionType = new GraphQLObjectType({
     })
 })
 
-//QuestionInputType
+
 const QuestionInputType = new GraphQLInputObjectType({
-    name: "QuestionInput",
-    description: "Question Input Type",
+    name: 'QuestionInput',
+    description: 'Question input type',
     fields: () => ({
         title: { type: GraphQLString },
         correctAnswer: { type: GraphQLString },
-        order: { type: GraphQLInt } 
+        order: { type: GraphQLInt }
     })
 })
 
-//AnswerInputType
+
 const AnswerInputType = new GraphQLInputObjectType({
-    name: "AnswerInput",
-    description: "Answer Input Type",
+    name: 'AnswerInput',
+    description: 'Answer input type',
     fields: () => ({
         questionId: { type: GraphQLString },
         answer: { type: GraphQLString }
     })
 })
 
-// QuizType
 const QuizType = new GraphQLObjectType({
     name: 'Quiz',
     description: 'Quiz type',
@@ -107,7 +106,6 @@ const QuizType = new GraphQLObjectType({
     })
 })
 
-// SubmissionType
 const SubmissionType = new GraphQLObjectType({
     name: 'Submission',
     description: 'Submission type',
@@ -131,7 +129,6 @@ const SubmissionType = new GraphQLObjectType({
     })
 })
 
-//export out of types
 module.exports = {
     UserType,
     QuizType,
