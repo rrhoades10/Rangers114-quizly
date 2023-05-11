@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser')
 const schema = require('./src/graphql/schema')
 const path = require('path')
 const { authenticate } = require('./src/middleware/auth')
+const { userData } = require('./src/middleware/userData')
 
 
 dotenv.config()
@@ -32,13 +33,10 @@ app.set("view engine", "ejs")
 app.set('views', path.join(__dirname, '/src/templates/views'));
 
 app.use(authenticate)
+app.use(userData)
 
 /* Initialize Routes */
 require('./src/routes')(app)
-
-app.get("/", (req, res) => {
-    res.send('Hello World')
-})
 
 
 app.listen(process.env.PORT, () => {

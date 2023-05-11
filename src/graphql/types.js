@@ -117,13 +117,13 @@ const SubmissionType = new GraphQLObjectType({
         user: {
             type: UserType,
             resolve(parent, args) {
-                return User.findOne({ id: parent.userId })
+                return User.findOne({ _id: parent.userId })
             }
         },
         quiz: {
             type: QuizType,
             resolve(parent, args) {
-                return Quiz.findOne({ id: parent.quizId })
+                return Quiz.findOne({ _id: parent.quizId })
             }
         }
     })

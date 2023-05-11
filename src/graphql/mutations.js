@@ -1,7 +1,7 @@
 const { GraphQLString, GraphQLNonNull, GraphQLList } = require('graphql')
 const { QuestionInputType, AnswerInputType } = require('./types')
 const { User, Quiz, Question, Submission } = require('../models')
-
+const { createJWT } = require('../util/auth')
 
 
 // Register a User
@@ -87,7 +87,7 @@ const createQuiz = {
             }
         }
 
-        
+
         const quiz = new Quiz({
             title: args.title,
             description: args.description,
